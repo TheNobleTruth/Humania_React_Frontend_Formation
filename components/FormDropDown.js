@@ -1,14 +1,19 @@
+// import {
+//   DropdownToggle,
+//   DropdownMenu,
+//   DropdownItem,
+//   UncontrolledDropdown,
+// } from "react";
 
 const FormDropDown = () => {
+  
+  const handleSelect=(e)=>{
+    console.log(e);
+  }
+
   return (
     <>
-      <h1 style={{color: "red"}}>  
-        Get a Quote
-      </h1>
 
-        <div>
-          <h4> Dropdown menu</h4>Always display
-        </div>
     </>
   )
 }
