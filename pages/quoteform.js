@@ -1,39 +1,41 @@
 import Head from "next/head"
 import FormCommercial from "../components/FormCommercial"
-import FormDropDown from "../components/FormDropDown"
 import FormResidential from "../components/FormResidential"
 import FormCorporate from "../components/FormCorporate"
 import FormHybrid from "../components/FormHybrid"
-import FormAutoComplete from "../components/FormAutoComplete"
-import FormQuality from "../components/FormQuality"
 import { useState } from "react"
 
 const quoteform = () => {
+    
+    const [buildingType, setBuildingType] = useState(0)
+
+    // Exemple for prop: From a parent
     const [testt, setTestt] = useState(0)
     const testFunction = (fromParent) => {
         setTestt(fromParent)
     }
-    
-    const [one, setOne] = useState(0)
-    const handleSelect = (event) => {
-        console.log(event.target.value)
-        
+    // ---
+
+    // Give a value to the user choice
+    const handleSelect = (event) => {    
         switch (event.target.value) {
             case "residential" :
-                setOne(1)
+                setBuildingType(1)
                 break;
             case "commercial" :
-                setOne(2)
+                setBuildingType(2)
                 break;
             case "corporate" :
-                setOne(3)
+                setBuildingType(3)
                 break;
             case "hybrid" :
-                setOne(4)
+                setBuildingType(4)
                 break;
         }
     }
 
+    const handleSubmit = () => {
+	}
 
     return (
     <div>
@@ -43,12 +45,11 @@ const quoteform = () => {
             </title>
         </Head>
 
-
         {/* Always there */}
     <h1 style={{color: "red"}}>  
-        Get a Quote {one}
+        Get a Quote 
     </h1>
-        {testt}
+      
     <label htmlFor="buildingtype">Building type  <br></br>
         <select id="building-type" name="building-type"  onChange={event => handleSelect(event)}>
             <option name="builtyp" value="Default">-- Select --</option>
@@ -60,15 +61,18 @@ const quoteform = () => {
     </label>
 
         {/* Depend on dropDown choice */}
-        {one === 0 && <div></div>}
-        {one === 1 && <FormResidential patate={one} testFunction={testFunction}/>}
-        {one === 2 && <FormCommercial />}
-        {one === 3 && <FormCorporate />}
-        {one === 4 && <FormHybrid />}
+        {buildingType === 0 && <div></div>}
+        {buildingType === 1 && <FormResidential buildingType={buildingType} testFunction={testFunction}/>}
+        {buildingType === 2 && <FormCommercial />} 
+        {buildingType === 3 && <FormCorporate />}
+        {buildingType === 4 && <FormHybrid />} 
 
         {/* Always there */}
-        <FormQuality />
-        <FormAutoComplete />
+        
+        <br></br>
+
+
+	   
 
     </div>
   )
