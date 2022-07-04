@@ -30,7 +30,8 @@ const FormCommercial = () => {
     console.log("nb parking = " + nbOfParking + " // " + (typeof(nbOfParking)))
 		console.log("nb elevator = " + nbOfElevator + " // " + (typeof(nbOfElevator)))
 
-		
+		setnbOfElevatorNeeded(parseInt(nbOfElevator))
+		console.log("nb nbOfElevatorNeeded = " + nbOfElevatorNeeded + " // " + (typeof(nbOfElevatorNeeded)))
 
 	}, [nbOfAppartment, nbOfFloor, nbOfBasement, nbOfBusiness, nbOfElevator])
 

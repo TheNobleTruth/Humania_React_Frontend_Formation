@@ -14,7 +14,6 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
       setSelected(!e.target.value)
     }
 
-    let productLineValue = getUnitPrice(productLine)
 
     // Formater $
     function getFormat(toFormatt) {
@@ -45,10 +44,11 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
 
       // Get installation Fees
       switch (productLine) {
+        
         case 7565:
-          console.log(allElevatorCost)
-          console.log("ddd" + typeof(productLine))
+          console.log("installaion fees " + installationFees)
           setInstallationFees(allElevatorCost * 0.10)
+          console.log("installaion fees 2" + installationFees)
           break;
         case 12345:
           setInstallationFees(allElevatorCost * 0.13)
@@ -58,9 +58,9 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
           break;
       }
       
-
       // Get final price
       setFinalPrice(allElevatorCost + installationFees)
+      console.log("final price " + finalPrice)
 
     }, [productLine, nbOfElevatorNeeded])
 
@@ -69,15 +69,15 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
        <div>
 			  
           <div id="quality">
-              <br></br>
-                <label htmlFor="standard" class="radio-inline">Standard - 7 565 $</label>
-                <input id="standard" type="radio" value="standard" name="radiobutton" checked={selected} onClick={e => getUnitPrice(e.target.value)} onChange={toggleRadioButton} />
-              <br></br>
-                <label htmlFor="prenium" class="radio-inline">Premium - 12 345 $</label>
-                <input id="premium" type="radio" value="prenium" name="radiobutton" checked={selected === false} onClick={e => getUnitPrice(e.target.value)}/>
-              <br></br>
-                <label htmlFor="excelium" class="radio-inline">Excelium - 15 400 $</label>
-                <input id="excelium" type="radio" value="excelium" name="radiobutton" checked={selected === false} onClick={e => getUnitPrice(e.target.value)}/>
+            <br></br>
+              <label htmlFor="standard" class="radio-inline">Standard - 7 565 $</label>
+              <input id="standard" type="radio" value="standard" name="radiobutton" checked={selected} onClick={e => getUnitPrice(e.target.value)} />
+            <br></br>
+              <label htmlFor="prenium" class="radio-inline">Premium - 12 345 $</label>
+              <input id="premium" type="radio" value="prenium" name="radiobutton" checked={selected === false} onClick={e => getUnitPrice(e.target.value)}/>
+            <br></br>
+              <label htmlFor="excelium" class="radio-inline">Excelium - 15 400 $</label>
+              <input id="excelium" type="radio" value="excelium" name="radiobutton" checked={selected === false} onClick={e => getUnitPrice(e.target.value)}/>
           </div>
           
           <h4> ------- Auto Complete fields ------- </h4>	
