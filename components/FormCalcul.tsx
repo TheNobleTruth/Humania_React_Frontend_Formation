@@ -1,54 +1,43 @@
 import { useEffect, useState } from "react"
+import React from "react"
+import FormResidential from "./FormResidential"
 
 const FormCalcul = ({nbOfElevatorNeeded}) => {
-  
+
     // Auto complete variable
-    const [productLine, setProductLine] = useState("standard")
-    const [allElevatorCost, setAllElevatorCost] = useState(0)
-    const [installationFees, setInstallationFees] = useState(0)
-    const [finalPrice, setFinalPrice] = useState(0)
+    const [productLine, setProductLine] = useState<number>(0)
+    const [allElevatorCost, setAllElevatorCost] = useState<number>(0)
+    const [installationFees, setInstallationFees] = useState<number>(0)
+    const [finalPrice, setFinalPrice] = useState<number>(0)
 
-    // Default select - Radio button
-    const [selected, setSelected] = useState(true);
-    const toggleRadioButton = (e) => {
-      setSelected(!e.target.value)
-    }
-
-
+    // Radio button
+    const [selectedRadioBtn, setSelectedRadioBtn] = React.useState("standard")
+    const isRadioSelected = (value: string): boolean => selectedRadioBtn === value;
+    const handleRadioClick = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadioBtn(e.currentTarget.value)
+   
     // Formater $
-    function getFormat(toFormatt) {
+    function getFormat(toFormatt: number) {
       let formatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
       return formatter.format(toFormatt) + " $"
           
-    }
-    // Get unit price
-    function getUnitPrice(e) {
-      switch (e) {
-          case "standard":
-            setProductLine(7565)
-            break;
-          case "prenium":
-            setProductLine(12345)
-            break;
-          case "excelium":
-            setProductLine(15400)
-            break;
-      }
     }
 
     // --------- Refresh auto-Complete fields ---------
     useEffect(() => {
 
-      // 
+      console.log("-----------FormCalcul--------------------")
+      // Get all elevators cost
       setAllElevatorCost(productLine * nbOfElevatorNeeded)
-
+      console.log("all elevators cost " + allElevatorCost)
+      console.log("nb of elevator " + nbOfElevatorNeeded)
+      console.log("setAllElevatorCost " + setAllElevatorCost(productLine * nbOfElevatorNeeded))
+      
       // Get installation Fees
       switch (productLine) {
-        
         case 7565:
-          console.log("installaion fees " + installationFees)
+          console.log("productLine "  + productLine)
           setInstallationFees(allElevatorCost * 0.10)
-          console.log("installaion fees 2" + installationFees)
+          console.log("installations fees "  + allElevatorCost * 0.10)
           break;
         case 12345:
           setInstallationFees(allElevatorCost * 0.13)
@@ -57,10 +46,9 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
           setInstallationFees(allElevatorCost * 0.16)
           break;
       }
-      
+
       // Get final price
       setFinalPrice(allElevatorCost + installationFees)
-      console.log("final price " + finalPrice)
 
     }, [productLine, nbOfElevatorNeeded])
 
@@ -70,14 +58,14 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
 			  
           <div id="quality">
             <br></br>
-              <label htmlFor="standard" class="radio-inline">Standard - 7 565 $</label>
-              <input id="standard" type="radio" value="standard" name="radiobutton" checked={selected} onClick={e => getUnitPrice(e.target.value)} />
+              <label>Standard - 7 565 $</label>
+              <input type="radio" value="standard" checked={isRadioSelected("standard")} onChange={handleRadioClick} onClick={() => setProductLine(7565)} />
             <br></br>
-              <label htmlFor="prenium" class="radio-inline">Premium - 12 345 $</label>
-              <input id="premium" type="radio" value="prenium" name="radiobutton" checked={selected === false} onClick={e => getUnitPrice(e.target.value)}/>
+              <label>Premium - 12 345 $</label>
+              <input type="radio" value="prenium" checked={isRadioSelected("prenium")} onChange={handleRadioClick} onClick={() => setProductLine(12_345)}/>
             <br></br>
-              <label htmlFor="excelium" class="radio-inline">Excelium - 15 400 $</label>
-              <input id="excelium" type="radio" value="excelium" name="radiobutton" checked={selected === false} onClick={e => getUnitPrice(e.target.value)}/>
+              <label> Excelium - 15 400 $</label>
+              <input type="radio" value="excelium" checked={isRadioSelected("excelium")} onChange={handleRadioClick} onClick={() => setProductLine(15_400)}/>
           </div>
           
           <h4> ------- Auto Complete fields ------- </h4>	
@@ -99,7 +87,7 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
           
           <div id="instalation-fees">
               <label>Installation fees : </label>
-              <input readreadOnly id="instFees" value={getFormat(installationFees)}/>
+              <input readOnly id="instFees" value={getFormat(installationFees)}/>
           </div>
 
           <div id="final-price">

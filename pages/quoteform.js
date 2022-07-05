@@ -55,8 +55,8 @@ const quoteform = () => {
             <option name="builtyp" value="Default">-- Select --</option>
             <option id="residential" name="builtyp" value="residential">Residential</option>
             <option id="commercial" name="builtyp" value="commercial">Commercial</option>
-            <option id="corporate" value="corporate">Corporate</option>
-            <option id="hybrid" name="builtyp" value="hybrid">Hybrid</option>
+            {/* <option id="corporate" value="corporate">Corporate</option>
+            <option id="hybrid" name="builtyp" value="hybrid">Hybrid</option> */}
         </select>
     </label>
 
