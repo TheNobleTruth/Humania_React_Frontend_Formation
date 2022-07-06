@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import FormCalcul from "./FormCalcul"
+import TextField from "@material-ui/core/TextField"
 
 const FormResidential = () => {
 
@@ -16,8 +17,6 @@ const FormResidential = () => {
 		console.log("nb of appartment : " + nbOfAppartment)
 		console.log("nb of floor : " + nbOfFloor)
 		console.log("nb of Basement : " + nbOfBasement)
-
-
 
 		// Set variable for calculs of elevator needed
 		const avOfDoorPerFloor : number = (nbOfAppartment / (nbOfFloor - nbOfBasement))
@@ -48,22 +47,38 @@ const FormResidential = () => {
 
 				<h4> Residential </h4>
 			<form>
-				<div id="number-of-apartments">
-					<label htmlFor="appartForResidential">Number of apartments  </label>
-					<input type="number" value={nbOfAppartment} onChange={e => setNbOfAppartment( parseInt(e.target.value))}/>
+				<div id="Amount-of-apartments">
+					<TextField
+						label="Amount of apartments"
+						variant="filled" 
+						color="secondary"
+						type="number"
+						placeholder="0" 
+						value={nbOfAppartment} 
+						onChange={e => setNbOfAppartment( parseInt(e.target.value))}/>
 				</div>
 
-				<div id="number-of-floors">
-					<label htmlFor="floorForResidential">Number of floors, excluding basements </label>
-					<input type="number" value={nbOfFloor} onChange={e => setNbOfFloor( parseInt(e.target.value))}/>
+				<div id="Amount-of-floors">
+					<TextField 
+						label="Amount of floors"
+						variant="filled" 
+						color="secondary"
+						type="number" 
+						value={nbOfFloor} 
+						onChange={e => setNbOfFloor( parseInt(e.target.value))}/>
 				</div>
 
-				<div id="number-of-basements">
-					<label htmlFor="basementForResidential">Number of basements </label>
-					<input type="number" value={nbOfBasement} onChange={e => setnbOfBasement( parseInt(e.target.value))}/>
+				<div id="Amount-of-basements">
+					<TextField
+					  label="Amount of basements"
+						variant="filled" 
+						color="secondary"
+						type="number" 
+						value={nbOfBasement} 
+						onChange={e => setnbOfBasement( parseInt(e.target.value))}/>
 				</div>
 
-				<FormCalcul nbOfElevatorNeeded={nbOfElevatorNeeded}/> 
+				<FormCalcul nbOfElevatorNeeded = {nbOfElevatorNeeded}/> 
 			</form>
     </>
   )

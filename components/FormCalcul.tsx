@@ -1,11 +1,33 @@
 import { useEffect, useState } from "react"
 import React from "react"
-import FormResidential from "./FormResidential"
+import ButtonGroup from "@material-ui/core/ButtonGroup"
+import Button from "@material-ui/core/Button"
+import SendIcon from "@material-ui/icons/Send"
+import DeleteIcon from "@material-ui/icons/Delete"
+import Checkbox from "@material-ui/core/Checkbox"
+// import { makeStyles } from "@material-ui/core/styles"
+import "@fontsource/roboto"
+import Typography from "@material-ui/core/Typography"
+
+// const useStyles = makeStyles({
+// 	root: {
+// 		background: 'linear-gradient(45deg, #333, #000)',
+// 		border: 0,
+// 		borderRadius: 15,
+// 		color: "white",
+// 		padding: "0 30px"
+// 	}
+// })
+
+// function ButtonStyled() {
+// 	const classes = useStyles();
+// 	return <Button className={classes.root}> test Style </Button>
+// }
 
 const FormCalcul = ({nbOfElevatorNeeded}) => {
 
     // Auto complete variable
-    const [productLine, setProductLine] = useState<number>(0)
+    const [productLine, setProductLine] = useState<number>(7565)
     const [allElevatorCost, setAllElevatorCost] = useState<number>(0)
     const [installationFees, setInstallationFees] = useState<number>(0)
     const [finalPrice, setFinalPrice] = useState<number>(0)
@@ -18,7 +40,7 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
     // Formater $
     function getFormat(toFormatt: number) {
       let formatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
-      return formatter.format(toFormatt) + " $"
+      return formatter.format(toFormatt)
           
     }
 
@@ -55,45 +77,72 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
     return (
       <>
        <div>
-			  
-          <div id="quality">
-            <br></br>
-              <label>Standard - 7 565 $</label>
-              <input type="radio" value="standard" checked={isRadioSelected("standard")} onChange={handleRadioClick} onClick={() => setProductLine(7565)} />
-            <br></br>
-              <label>Premium - 12 345 $</label>
-              <input type="radio" value="prenium" checked={isRadioSelected("prenium")} onChange={handleRadioClick} onClick={() => setProductLine(12_345)}/>
-            <br></br>
-              <label> Excelium - 15 400 $</label>
-              <input type="radio" value="excelium" checked={isRadioSelected("excelium")} onChange={handleRadioClick} onClick={() => setProductLine(15_400)}/>
-          </div>
-          
-          <h4> ------- Auto Complete fields ------- </h4>	
-          
-          <div id="elevator-amount">
-              <label>Amount of elevator needed : </label>
-              <input readOnly id="eleAmount" value={nbOfElevatorNeeded} />
-          </div>
+    
+            <Typography
+              variant="body1">
+              <div id="quality">
+                <br></br>
+                {/* <ButtonStyled /> <br></br> */}
+                  <label>Standard - 7 565 $</label>
+                  <Checkbox value="standard" checked={isRadioSelected("standard")} onChange={handleRadioClick} onClick={() => setProductLine(7565)} />
+                <br></br>
+                  <label>Premium - 12 345 $</label>
+                  <Checkbox value="prenium" checked={isRadioSelected("prenium")} onChange={handleRadioClick} onClick={() => setProductLine(12_345)}/>
+                <br></br>
+                  <label> Excelium - 15 400 $</label>
+                  <Checkbox value="excelium" checked={isRadioSelected("excelium")} onChange={handleRadioClick} onClick={() => setProductLine(15_400)}/>
+              </div>
+            
+              <h4> ------- Auto Complete fields ------- </h4>	
+              
+              <div id="elevator-amount">
+                  <label>Amount of elevator needed : </label>
+                  <input readOnly id="eleAmount" value={nbOfElevatorNeeded} />
+              </div>
 
-          <div id="elevator-unit-price">
-              <label>Unit price : </label>
-              <input readOnly id="unitPrice" value={getFormat(productLine)} />			
-          </div>
-      
-          <div id="elevator-total-price">
-              <label> Total price of the elevators : </label>
-              <input readOnly id="elevPice" value={getFormat(allElevatorCost)}/>
-          </div>
+              <div id="elevator-unit-price">
+                  <label>Unit price : </label>
+                  <input readOnly id="unitPrice" value={getFormat(productLine)} />			
+              </div>
           
-          <div id="instalation-fees">
-              <label>Installation fees : </label>
-              <input readOnly id="instFees" value={getFormat(installationFees)}/>
-          </div>
+              <div id="elevator-total-price">
+                  <label> Total price of the elevators : </label>
+                  <input readOnly id="elevPice" value={getFormat(allElevatorCost)}/>
+              </div>
+              
+              <div id="instalation-fees">
+                  <label>Installation fees : </label>
+                  <input readOnly id="instFees" value={getFormat(installationFees)}/>
+              </div>
 
-          <div id="final-price">
-              <label>Final price : </label>
-              <input readOnly id="finalPrice" value={getFormat(finalPrice)}/>
-          </div>
+              <div id="final-price">
+                  <label>Final price : </label>
+                  <input readOnly id="finalPrice" value={getFormat(finalPrice)}/>
+              </div>
+              <br></br>
+            </Typography>
+          
+
+
+          <ButtonGroup           
+              size="large" 
+              variant="contained" 
+              color="primary" >
+
+            <Button
+              startIcon={<SendIcon />}
+              onClick={() => {alert('clicked');}}>
+              Send quotes
+            </Button>
+
+            <Button
+              endIcon={<DeleteIcon />}
+              onClick={() => {alert('clicked');}}>
+              Reset
+            </Button>
+
+          </ButtonGroup>
+
 
         </div>
 
