@@ -3,7 +3,7 @@ import Link from "next/Link";
 
 const Nav = () => {
   return (
-    <nav className={navStyle.nav}>
+    <nav className={navStyle.nav} >
         <ul>
             <li>
                 <Link href="/">Home </Link> 

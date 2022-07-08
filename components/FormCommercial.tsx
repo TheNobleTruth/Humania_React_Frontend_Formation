@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import FormCalcul from "./FormCalcul"
 
@@ -26,33 +27,71 @@ const FormCommercial = () => {
 			<h4> Commercial </h4>
 
 			<div id="number-of-apartments">
-				<label htmlFor="appartForResidential">Number of apartments  </label>
-				<input type="number" name="appartForResidential" id="appartForResidential" value={nbOfAppartment} onChange={e => setNbOfAppartment( parseInt(e.target.value))}/>
+				
+				<TextField 
+					label= "Amount of apartment"
+					type="number" 
+					variant="filled" 
+					color="secondary"
+					placeholder="0" 
+					value={nbOfAppartment} 
+					onChange={e => setNbOfAppartment( parseInt(e.target.value))}/>
 			</div>
 
 			<div id="number-of-floors">
-				<label htmlFor="floorForResidential">Number of floors, excluding basements </label>
-				<input type="number" name="floorForResidential" id="floorForResidential" value={nbOfFloor} onChange={e => setNbOfFloor( parseInt(e.target.value))}/>
+				<TextField 
+					label= "Amount of floors"
+					type="number" 
+					variant="filled" 
+					color="secondary"
+					placeholder="0" 
+					value={nbOfFloor} 
+					onChange={e => setNbOfFloor( parseInt(e.target.value))}/>
 			</div>
 
 			<div id="number-of-basements">
-				<label htmlFor="basementForResidential">Number of basements </label>
-				<input type="number" name="basementForResidential" id="basementForResidential" value={nbOfBasement} onChange={e => setnbOfBasement( parseInt(e.target.value))}/>
+				
+				<TextField 
+					label= "Amount of basements"
+					type="number" 
+					variant="filled" 
+					color="secondary"
+					placeholder="0" 
+					value={nbOfBasement} 
+					onChange={e => setnbOfBasement( parseInt(e.target.value))}/>
 			</div>
 
 			<div id="number-of-companies">
-				<label htmlFor="distinctBusiness">Number of business </label>
-				<input type="number" name="distinctBusiness" id="distinctBusiness" value={nbOfBusiness} onChange={e => setnbOfBusiness( parseInt(e.target.value))}/>
+				<TextField 
+					label= "Amount of compagnies"
+					type="number" 
+					variant="filled" 
+					color="secondary"
+					placeholder="0" 
+					value={nbOfBusiness} 
+					onChange={e => setnbOfBusiness( parseInt(e.target.value))}/>
 			</div>
 
 			<div id="number-of-parking-spots">
-				<label htmlFor="parking">Number of parking </label>
-				<input type="number" name="parking" id="parking" value={nbOfParking} onChange={e => setNbOfParking( parseInt(e.target.value))}/>
+				<TextField 
+					label= "Amount of parking spots"
+					type="number" 
+					variant="filled" 
+					color="secondary"
+					placeholder="0" 
+					value={nbOfParking} 
+					onChange={e => setNbOfParking( parseInt(e.target.value))}/>
 			</div>
 
 			<div id="number-of-elevators">
-				<label htmlFor="numberOfElevator">Number of elevator </label>
-				<input type="number" name="numberOfElevator" id="numberOfElevator" value={nbOfElevator} onChange={e => setnbOfElevator( parseInt(e.target.value))}/>				
+				<TextField 
+					label= "Amount of elevators"
+					type="number" 
+					variant="filled" 
+					color="secondary"
+					placeholder="0" 
+					value={nbOfElevator} 
+					onChange={e => setnbOfElevator( parseInt(e.target.value))}/>				
 			</div>
 
 		<FormCalcul nbOfElevatorNeeded={nbOfElevatorNeeded}/> 

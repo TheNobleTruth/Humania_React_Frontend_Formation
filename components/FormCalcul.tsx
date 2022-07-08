@@ -9,21 +9,6 @@ import Checkbox from "@material-ui/core/Checkbox"
 import "@fontsource/roboto"
 import Typography from "@material-ui/core/Typography"
 
-// const useStyles = makeStyles({
-// 	root: {
-// 		background: 'linear-gradient(45deg, #333, #000)',
-// 		border: 0,
-// 		borderRadius: 15,
-// 		color: "white",
-// 		padding: "0 30px"
-// 	}
-// })
-
-// function ButtonStyled() {
-// 	const classes = useStyles();
-// 	return <Button className={classes.root}> test Style </Button>
-// }
-
 const FormCalcul = ({nbOfElevatorNeeded}) => {
 
     // Auto complete variable
@@ -36,12 +21,11 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
     const [selectedRadioBtn, setSelectedRadioBtn] = React.useState("standard")
     const isRadioSelected = (value: string): boolean => selectedRadioBtn === value;
     const handleRadioClick = (e: React.ChangeEvent<HTMLInputElement>): void => setSelectedRadioBtn(e.currentTarget.value)
-   
+    
     // Formater $
     function getFormat(toFormatt: number) {
       let formatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
-      return formatter.format(toFormatt)
-          
+      return formatter.format(toFormatt)      
     }
 
     // --------- Refresh auto-Complete fields ---------
@@ -121,8 +105,6 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
               </div>
               <br></br>
             </Typography>
-          
-
 
           <ButtonGroup           
               size="large" 
@@ -136,16 +118,12 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
             </Button>
 
             <Button
-              endIcon={<DeleteIcon />}
-              onClick={() => {alert('clicked');}}>
+              endIcon={<DeleteIcon />}>
               Reset
             </Button>
 
           </ButtonGroup>
-
-
         </div>
-
       </>
   )
 }
