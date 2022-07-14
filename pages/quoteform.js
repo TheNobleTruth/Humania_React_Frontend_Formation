@@ -36,8 +36,7 @@ const quoteform = () => {
         }
     }
 
-    const handleSubmit = () => {
-	}
+
 
     return (
     <div>

@@ -26,6 +26,9 @@ const Nav = () => {
             <li>
                 <Link href="/"> Contact</Link> 
             </li>
+            <li id="crud">
+                <Link href="/crud"> Crud Operations</Link> 
+            </li>
         </ul>
     </nav> 
   )

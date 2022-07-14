@@ -22,3 +22,23 @@
     margin: 5px 15px;
   }
 
+  #crud {
+    align-content: right;
+    background-color: aqua;
+  }
+
+  .navCrud {
+    height: 50px;
+    padding: 10px;
+    background: rgb(255, 3, 3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+  }
+

@@ -49,6 +49,7 @@ const FormResidential = () => {
 			<form>
 				<div id="Amount-of-apartments">
 					<TextField
+						data-testid="qualityRole"
 						label="Amount of apartments"
 						variant="filled" 
 						color="secondary"

@@ -5,6 +5,7 @@ import FormCalcul from "./FormCalcul"
 const FormCommercial = () => {
 	
 	// Variable filled by user
+	
 	const [nbOfAppartment, setNbOfAppartment] = useState<number>(0)
 	const [nbOfFloor, setNbOfFloor] = useState<number>(0)
 	const [nbOfBasement, setnbOfBasement] = useState<number>(0)

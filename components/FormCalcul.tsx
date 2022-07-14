@@ -9,7 +9,7 @@ import Checkbox from "@material-ui/core/Checkbox"
 import "@fontsource/roboto"
 import Typography from "@material-ui/core/Typography"
 
-const FormCalcul = ({nbOfElevatorNeeded}) => {
+const FormCalcul = ({nbOfElevatorNeeded}: { nbOfElevatorNeeded: number}) => {
 
     // Auto complete variable
     const [productLine, setProductLine] = useState<number>(7565)
@@ -32,12 +32,8 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
     useEffect(() => {
 
       console.log("-----------FormCalcul--------------------")
-      // Get all elevators cost
-      setAllElevatorCost(productLine * nbOfElevatorNeeded)
-      console.log("all elevators cost " + allElevatorCost)
-      console.log("nb of elevator " + nbOfElevatorNeeded)
-      console.log("setAllElevatorCost " + setAllElevatorCost(productLine * nbOfElevatorNeeded))
-      
+
+      console.log("productLine before switch case "  + productLine)
       // Get installation Fees
       switch (productLine) {
         case 7565:
@@ -53,6 +49,13 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
           break;
       }
 
+      // Get all elevators cost
+      setAllElevatorCost(productLine * nbOfElevatorNeeded)
+      
+      console.log("nb of elevator " + nbOfElevatorNeeded)
+      console.log("all elevators cost " + allElevatorCost)
+      console.log("setAllElevatorCost " + setAllElevatorCost(productLine * nbOfElevatorNeeded))
+
       // Get final price
       setFinalPrice(allElevatorCost + installationFees)
 
@@ -64,7 +67,7 @@ const FormCalcul = ({nbOfElevatorNeeded}) => {
     
             <Typography
               variant="body1">
-              <div id="quality">
+              <div id="quality" role="qualityRole">
                 <br></br>
                 {/* <ButtonStyled /> <br></br> */}
                   <label>Standard - 7 565 $</label>
