@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import axios from "axios"
 
-const CrudAdd = () => {
-  
-  const urlAdd = "http://localhost:8080/api/quote/allQuote"
-  const [allQuote, setAllQuote] = useState(null)
+
+const CrudAdd = ({buildingType}) => {
   
   useEffect(() => {
-    axios.get(urlAdd)
-      .then(response => {
-        setAllQuote(response.data)
-        
-        // console.log("-------- response.data = " + response.data)
-        // console.log("-------- allQuote type of = " + typeof(allQuote))
-        // console.log(" -------------- allQuote --------------")
-        // console.log(allQuote)
-       
-    })
-  }, [urlAdd])
-
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'Post quote' })
+    };
+    fetch('https://reqres.in/api/posts', requestOptions)
+        .then(response => response.json())
+        .then(data => setPostId(data.id));
+  }, []);
 
   return (
     <div>
-      Adddd
+      Building type : {buildingType}
+
       
     </div>
   )

@@ -1,7 +1,6 @@
 
-import React, { useEffect, useState } from 'react'
 import MeterialUiList from "./GridGet"
-import { clsx } from 'clsx';
+
 
 const CrudGetResidential = () => {
 

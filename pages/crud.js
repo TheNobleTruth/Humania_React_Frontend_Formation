@@ -6,6 +6,7 @@ import CrudGetAll from '../components/CrudGetAll'
 import CrudGetCommercial from '../components/CrudGetCommercial'
 import CrudGetResidential from '../components/CrudGetResidential copy'
 import CrudGetId from '../components/CrudGetId'
+import CrudAdd from '../components/CrudAdd'
 
 
 const Crud = () => {
@@ -27,6 +28,9 @@ const Crud = () => {
             case "getId" :
               setUserRequest(4)
               break;
+            case "add" :
+              setUserRequest(5)
+              break;
         }
     }
 
@@ -41,6 +45,7 @@ const Crud = () => {
                   <option id="commercial" value="commercialQuotes">Get all commercial Quote</option>
                   <option id="commercial" value="residentialQuotes">Get all residential Quote</option>
                   <option id="getId" value="getId">Get quote with Id</option>
+                  <option id="add" value="add">Add - For trouble shooting</option>
               </select>
           </label>
         </Typography>
@@ -49,6 +54,7 @@ const Crud = () => {
           {userRequest === 2 && <CrudGetCommercial />}
           {userRequest === 3 && <CrudGetResidential />}
           {userRequest === 4 && <CrudGetId />}
+          {userRequest === 5 && <CrudAdd />}
     </>
   )
 }

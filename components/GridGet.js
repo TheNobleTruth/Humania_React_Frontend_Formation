@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react"
+import CrudAdd from "./CrudAdd"
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -16,28 +17,28 @@ const columns = [
 
 
 const DataGridMUI = ({quotesRequested}) => {
+  
   const [quote, setQuote] = useState([])
 
   let url =  ""
 
   switch (quotesRequested) {
     case "allQuotes" :
-        url = "http://localhost:8080/api/quote/allQuote"
-        break;
+      url = "http://localhost:8080/api/quote/allQuote"
+      break;
     case "commercialQuotes" :
-        url = "http://localhost:8080/api/quote/allCommercialType"
-        break;
+      url = "http://localhost:8080/api/quote/allCommercialType"
+      break;
     case "residentialQuotes" :
-        url = "http://localhost:8080/api/quote/allResidentialType"
-        break;
+      url = "http://localhost:8080/api/quote/allResidentialType"
+      break;
 }
   const fetchData = async () => {
     try {
-      console.log(allQuotes)
       const res = await fetch(url)
       const data = await res.json();
       setQuote(data);
-      console.log(data)
+      console.log(typeof(data))
     } catch (err) {}
   }
 
