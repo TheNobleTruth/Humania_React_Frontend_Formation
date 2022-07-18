@@ -2,16 +2,16 @@ import Head from "next/head";
 import FormCommercial from "../components/FormCommercial";
 import FormResidential from "../components/FormResidential";
 import { useState } from "react";
-
+import React from 'react'
 // For typo
 import "@fontsource/roboto";
 import Typography from "@material-ui/core/Typography";
 // For flex box
 import Container from "@material-ui/core/Container";
-import CrudAdd from "../components/CrudAdd";
 
-const quoteform = () => {
-  const [buildingType, setBuildingType] = useState(0);
+
+const quoteform = ({product_line}) => {
+  const [building_type, setBuildingType] = useState(0);
 
   // Give a value to the user choice
   const handleSelect = (event) => {
@@ -21,12 +21,6 @@ const quoteform = () => {
         break;
       case "commercial":
         setBuildingType(2);
-        break;
-      case "corporate":
-        setBuildingType(3);
-        break;
-      case "hybrid":
-        setBuildingType(4);
         break;
     }
   };
@@ -42,7 +36,7 @@ const quoteform = () => {
         <Typography variant="subtitle1" color="secondary">Fast and Easy</Typography>
         <br></br>
         <Typography variant="body1">
-          <label htmlFor="buildingtype">
+          <label htmlFor="building_type">
             Building type <br></br>
             <select
               id="building-type"
@@ -63,14 +57,14 @@ const quoteform = () => {
         </Typography>
 
         {/* Depend on dropDown choice */}
-        {buildingType === 0 && <div></div>}
-        {buildingType === 1 && <FormResidential buildingType={buildingType} />}
-        {buildingType === 2 && <FormCommercial />}
-        {buildingType === 3 && <FormCorporate />}
-        {buildingType === 4 && <FormHybrid />}
+          {building_type === 0 && <div></div>}
+          {building_type === 1 && <FormResidential building_type={building_type} product_line={product_line}/>}
+          {building_type === 2 && <FormCommercial building_type={building_type} product_line={product_line}/> }
 
         <br></br>
+  
       </Container>
+
     </div>
   );
 };

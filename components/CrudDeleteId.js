@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CrudDelete = () => {
+const CrudDeleteId = () => {
   return (
     <div>
-      Delete
+      
     </div>
   )
 }
 
-export default CrudDelete
+export default CrudDeleteId

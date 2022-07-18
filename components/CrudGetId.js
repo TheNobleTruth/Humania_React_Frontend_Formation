@@ -24,18 +24,15 @@ const CrudGetId = () => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(url)
-        .then(res => res.json())
-        .then(hello => setQuote(hello))
+      const ress = await fetch(url)
+        .then(ress => ress.json())
+        .then(hello => setQuote(...hello))
     } catch (err) {}
   }
 
   useEffect(() => {
     setUrl(basicUrl + id)
-    console.log(quote)
     fetchData()
-    // console.log(url)
-    
   }, [id])
 
   const rowData = quote?.map(quote => {

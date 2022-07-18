@@ -38,7 +38,6 @@ const DataGridMUI = ({quotesRequested}) => {
       const res = await fetch(url)
       const data = await res.json();
       setQuote(data);
-      console.log(typeof(data))
     } catch (err) {}
   }
 
@@ -46,7 +45,7 @@ const DataGridMUI = ({quotesRequested}) => {
     fetchData();
   }, [])
 
-  const rowData = quote.map(quote => {
+  const rowData = quote?.map(quote => {
     return {
       id: quote.id,
       building_type: quote.building_type,

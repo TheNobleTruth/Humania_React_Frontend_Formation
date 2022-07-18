@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
-import SendIcon from "@material-ui/icons/Send";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import Checkbox from "@material-ui/core/Checkbox";
+import QuoteForm from "../pages/quoteform"
 // import { makeStyles } from "@material-ui/core/styles"
 import "@fontsource/roboto";
 import Typography from "@material-ui/core/Typography";
 
-const FormCalcul = ({ nbOfElevatorNeeded }: { nbOfElevatorNeeded: number }) => {
+const FormCalcul = ({ num_elev }) => {
   // Auto complete variable
-  const [productLine, setProductLine] = useState<number>(7565);
+  const [product_line, setProductLine] = useState<number>(7565);
   const [allElevatorCost, setAllElevatorCost] = useState<number>(0);
   const [installationFees, setInstallationFees] = useState<number>(0);
   const [finalPrice, setFinalPrice] = useState<number>(0);
@@ -34,15 +32,15 @@ const FormCalcul = ({ nbOfElevatorNeeded }: { nbOfElevatorNeeded: number }) => {
 
   // --------- Refresh auto-Complete fields ---------
   useEffect(() => {
-    console.log("-----------FormCalcul--------------------");
+    
+    // Get all elevators cost
+    setAllElevatorCost(product_line * num_elev);
 
-    console.log("productLine before switch case " + productLine);
     // Get installation Fees
-    switch (productLine) {
+    switch (product_line) {
       case 7565:
-        console.log("productLine " + productLine);
+        console.log(allElevatorCost)
         setInstallationFees(allElevatorCost * 0.1);
-        console.log("installations fees " + allElevatorCost * 0.1);
         break;
       case 12345:
         setInstallationFees(allElevatorCost * 0.13);
@@ -52,19 +50,11 @@ const FormCalcul = ({ nbOfElevatorNeeded }: { nbOfElevatorNeeded: number }) => {
         break;
     }
 
-    // Get all elevators cost
-    setAllElevatorCost(productLine * nbOfElevatorNeeded);
-
-    console.log("nb of elevator " + nbOfElevatorNeeded);
-    console.log("all elevators cost " + allElevatorCost);
-    console.log(
-      "setAllElevatorCost " +
-        setAllElevatorCost(productLine * nbOfElevatorNeeded)
-    );
-
     // Get final price
     setFinalPrice(allElevatorCost + installationFees);
-  }, [productLine, nbOfElevatorNeeded]);
+  }, [product_line, num_elev]);
+
+  <QuoteForm product_line={product_line}/>
 
   return (
     <>
@@ -102,12 +92,12 @@ const FormCalcul = ({ nbOfElevatorNeeded }: { nbOfElevatorNeeded: number }) => {
 
           <div id="elevator-amount">
             <label>Amount of elevator needed : </label>
-            <input readOnly id="eleAmount" value={nbOfElevatorNeeded} />
+            <input readOnly id="eleAmount" value={num_elev} />
           </div>
 
           <div id="elevator-unit-price">
             <label>Unit price : </label>
-            <input readOnly id="unitPrice" value={getFormat(productLine)} />
+            <input readOnly id="unitPrice" value={getFormat(product_line)} />
           </div>
 
           <div id="elevator-total-price">
@@ -126,19 +116,6 @@ const FormCalcul = ({ nbOfElevatorNeeded }: { nbOfElevatorNeeded: number }) => {
           </div>
           <br></br>
         </Typography>
-
-        <ButtonGroup size="large" variant="contained" color="primary">
-          <Button
-            startIcon={<SendIcon />}
-            onClick={() => {
-              alert("clicked");
-            }}
-          >
-            Send quotes
-          </Button>
-
-          <Button endIcon={<DeleteIcon />}>Reset</Button>
-        </ButtonGroup>
       </div>
     </>
   );

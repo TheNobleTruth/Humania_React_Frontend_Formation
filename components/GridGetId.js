@@ -20,8 +20,6 @@ const DataGridId = ({idRequested}) => {
 
   const basicUrl = "http://localhost:8080/api/quote/"
   setUrl(basicUrl + idRequested)
-  console.log(url)
-  
 
   const fetchData = async () => {
     try {
