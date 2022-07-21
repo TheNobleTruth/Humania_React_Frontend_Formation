@@ -21,21 +21,21 @@ const FormResidential = ({building_type, product_line}) => {
   useEffect(() => {
 
     // Set variable for calculs of elevator needed
-    const avOfDoorPerFloor: number = num_apts / (num_floors - num_base);
-
+    let avOfDoorPerFloor: number = Math.ceil(num_apts / (num_floors - num_base));
     let elevatorsPerSixAppartment: number = Math.ceil(avOfDoorPerFloor / 6);
-
     let nbOfColumsNeeded: number = Math.ceil(num_floors / 20);
 
     // Calcul of elevator Needed
-    if (avOfDoorPerFloor === (Infinity || NaN)) {
+    if (isNaN(avOfDoorPerFloor))  {
+      setnbOfElevatorNeeded(0);
+    } else if (isFinite(avOfDoorPerFloor) != true) {
       setnbOfElevatorNeeded(0);
     } else if (num_floors < 20) {
       setnbOfElevatorNeeded(elevatorsPerSixAppartment);
     } else {
       setnbOfElevatorNeeded(elevatorsPerSixAppartment * nbOfColumsNeeded);
     }
-  }, [num_floors, num_base, num_apts]);
+  }, [num_floors, num_base, num_apts, product_line]);
 
   
 

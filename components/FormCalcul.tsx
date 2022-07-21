@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import React from "react";
 
 import Checkbox from "@material-ui/core/Checkbox";
@@ -6,13 +6,18 @@ import QuoteForm from "../pages/quoteform"
 // import { makeStyles } from "@material-ui/core/styles"
 import "@fontsource/roboto";
 import Typography from "@material-ui/core/Typography";
+import CrudAdd from "./CrudAdd";
 
 const FormCalcul = ({ num_elev }) => {
+
+  // const appContext = useContext(App);
+
   // Auto complete variable
   const [product_line, setProductLine] = useState<number>(7565);
   const [allElevatorCost, setAllElevatorCost] = useState<number>(0);
   const [installationFees, setInstallationFees] = useState<number>(0);
   const [finalPrice, setFinalPrice] = useState<number>(0);
+
 
   // Radio button
   const [selectedRadioBtn, setSelectedRadioBtn] = React.useState("standard");
@@ -32,14 +37,16 @@ const FormCalcul = ({ num_elev }) => {
 
   // --------- Refresh auto-Complete fields ---------
   useEffect(() => {
-    
+
     // Get all elevators cost
     setAllElevatorCost(product_line * num_elev);
+    console.log(product_line + " ------- This is the product line in calcul - Use effect")
+    console.log(num_elev + " ------- This is the amount of elevator - Use effect")
 
     // Get installation Fees
     switch (product_line) {
       case 7565:
-        console.log(allElevatorCost)
+        console.log(allElevatorCost + " Product line ")
         setInstallationFees(allElevatorCost * 0.1);
         break;
       case 12345:
@@ -55,6 +62,7 @@ const FormCalcul = ({ num_elev }) => {
   }, [product_line, num_elev]);
 
   <QuoteForm product_line={product_line}/>
+
 
   return (
     <>
@@ -76,7 +84,7 @@ const FormCalcul = ({ num_elev }) => {
               value="prenium"
               checked={isRadioSelected("prenium")}
               onChange={handleRadioClick}
-              onClick={() => setProductLine(12_345)}
+              onClick={() => setProductLine(12345)}
             />
             <br></br>
             <label> Excelium - 15 400 $</label>
@@ -84,7 +92,7 @@ const FormCalcul = ({ num_elev }) => {
               value="excelium"
               checked={isRadioSelected("excelium")}
               onChange={handleRadioClick}
-              onClick={() => setProductLine(15_400)}
+              onClick={() => setProductLine(15400)}
             />
           </div>
 

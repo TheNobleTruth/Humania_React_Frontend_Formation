@@ -22,7 +22,12 @@ const FormCommercial = ({building_type, product_line}) => {
 
   useEffect(() => {
     setnbOfElevatorNeeded(nbOfElevator);
-  }, [num_apts, num_floors, num_base, num_comp, nbOfElevator]);
+  }, [num_apts, 
+    num_floors, 
+    num_base, 
+    num_comp, 
+    nbOfElevator, 
+    product_line]);
 
   return (
     <>
