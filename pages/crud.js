@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography"
 import { useState } from "react"
 import CrudGetAll from '../components/CrudGetAll'
 import CrudGetCommercial from '../components/CrudGetCommercial'
-import CrudGetResidential from '../components/CrudGetResidential copy'
+import CrudGetResidential from '../components/CrudGetResidential'
 import CrudGetId from '../components/CrudGetId'
 import CrudDeleteId from '../components/CrudDeleteId'
 

@@ -1,81 +1,163 @@
-import { TextField } from "@material-ui/core"
-import { useEffect, useState } from "react"
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { TextField } from "@material-ui/core";
+import { useEffect, useState } from "react";
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+
+import { deepOrange, deepPurple } from "@mui/material/colors";
 
 const CrudGetId = () => {
 
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'building_type', headerName: 'Building Type', width: 130 },
-    { field: 'num_apts', headerName: 'Appartment', width: 90 },
-    { field: 'num_floors', headerName: 'Floor', width: 90 },
-    { field: 'num_base', headerName: 'Basement', width: 90 },
-    { field: 'num_comp', headerName: 'Compagnie', width: 90 },
-    { field: 'num_park', headerName: 'Parking', width: 90 },
-    { field: 'num_elev', headerName: 'Elevator', width: 90 },
-    { field: 'product_line', headerName: 'Product Line', width: 90 },
-  ];
-  
-  const basicUrl = "http://localhost:8080/api/quote/"
-  const [url, setUrl] = useState('')
-  const [id, setId] = useState(0)
-  const [quote, setQuote] = useState([])
+  const basicUrl = "http://localhost:8080/api/quote/";
+  const [url, setUrl] = useState("");
+  const [id, setId] = useState(0);
+  const [quote, setQuote] = useState([]);
 
   const fetchData = async () => {
     try {
-      const ress = await fetch(url)
-        .then(ress => ress.json())
-        .then(hello => setQuote(...hello))
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data);
+      setQuote(data);
     } catch (err) {}
-  }
+  };
 
   useEffect(() => {
-    setUrl(basicUrl + id)
-    fetchData()
-  }, [id])
+    setUrl(basicUrl + id);
+    fetchData();
+  }, [id]);
 
-  const rowData = quote?.map(quote => {
-    return {
-      id: quote.id,
-      building_type: quote.building_type,
-      num_apts: quote.num_apts,
-      num_floors: quote.num_floors,
-      num_base: quote.num_base,
-      num_comp: quote.num_comp,
-      num_park: quote.num_park,
-      num_elev: quote.num_elev,
-      product_line: quote.product_line,
-    }
-  })
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
+  // Set minimum user entry to O
+  const inputProps = {
+    min: 0,
+  };
 
   return (
-    <div>    
-      <br>
-      </br>
-        <TextField 
-          label= "Enter the ID :"
-          type="number" 
-          variant="filled" 
-          color="secondary"
-          placeholder="0" 
-          value={id} 
-          onChange={e => setId( parseInt(e.target.value))}/>
-          
-          <div style={{
-            height: '100vh', 
-            width: '80vw',
-            }}>
-            <DataGrid
-              rows={rowData}
-              columns={columns}
-              pageSize={10}
-              rowsPerPageOptions={[6]}
-              checkboxSelection
-            />
-          </div>
-     </div> 
-   )
-}
+    <div>
+      <br></br>
 
-export default CrudGetId
+      <Box
+        sx={{
+          width: 500,
+          maxWidth: "100%",
+        }}
+      >
+        <TextField
+          label="Enter the ID :"
+          fullWidth
+          id="fullWidth"
+          type="number"
+          variant="filled"
+          color="secondary"
+          inputProps={inputProps}
+          value={id}
+          onChange={(e) => setId(parseInt(e.target.value))}
+        />
+      </Box>
+      <Stack
+        direction="row"
+        spacing={10}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <div style={{ fontSize: "50px" }}>
+          <Box sx={{ width: "100%" }}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            >
+              {/* // Elevator */}
+              <Grid item xs={6}>
+                <Item>
+                  <div style={{ color: "red", fontSize: "30px" }}>
+                    Elevators
+                    <Avatar
+                      sx={{ bgcolor: deepPurple[500], width: 56, height: 56 }}
+                    >
+                      {quote.num_elev}
+                    </Avatar>
+                  </div>
+                </Item>
+              </Grid>
+
+              {/* // Appartment */}
+              <Grid item xs={6}>
+                <Item>
+                  Appartments
+                  <Avatar
+                    sx={{ bgcolor: deepOrange[500], width: 56, height: 56 }}
+                  >
+                    {quote.num_apts}
+                  </Avatar>
+                </Item>
+              </Grid>
+
+              {/* // Floors */}
+              <Grid item xs={6}>
+                <Item>
+                  Floors
+                  <Avatar
+                    sx={{ bgcolor: deepPurple[500], width: 56, height: 56 }}
+                  >
+                    {quote.num_floors}
+                  </Avatar>
+                </Item>
+              </Grid>
+
+              {/* // Basements */}
+              <Grid item xs={6}>
+                <Item>
+                  Basements
+                  <Avatar
+                    sx={{ bgcolor: deepOrange[500], width: 56, height: 56 }}
+                  >
+                    {quote.num_base}
+                  </Avatar>
+                </Item>
+              </Grid>
+
+              {/* // Compagnies */}
+              <Grid item xs={6}>
+                <Item>
+                  Compagnie
+                  <Avatar
+                    sx={{ bgcolor: deepPurple[500], width: 56, height: 56 }}
+                  >
+                    {quote.num_comp}
+                  </Avatar>
+                </Item>
+              </Grid>
+
+              {/* // Parking */}
+              <Grid item xs={6}>
+                <Item>
+                  Parking
+                  <Avatar
+                    sx={{ bgcolor: deepOrange[500], width: 56, height: 56 }}
+                  >
+                    {quote.num_park}
+                  </Avatar>
+                </Item>
+              </Grid>
+            </Grid>
+          </Box>
+        </div>
+      </Stack>
+    </div>
+  );
+};
+
+export default CrudGetId;
