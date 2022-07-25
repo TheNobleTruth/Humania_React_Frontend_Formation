@@ -14,7 +14,6 @@ const CrudAdd = ({
   num_elev,
   product_line,
 }) => {
-
   switch (building_type) {
     case 1:
       building_type = "Residential";
@@ -31,8 +30,8 @@ const CrudAdd = ({
       let res = await fetch("http://localhost:8080/api/quote/addQuote", {
         method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           building_type: building_type,
@@ -42,7 +41,7 @@ const CrudAdd = ({
           num_comp: num_comp,
           num_park: num_park,
           num_elev: num_elev,
-          product_line: product_line
+          product_line: product_line,
         }),
       });
       // let resJson = await res.json();
@@ -50,7 +49,7 @@ const CrudAdd = ({
       // Request status
       if (res.status === 200) {
       } else {
-        console.log("POST failed")
+        console.log("POST failed");
       }
     } catch (err) {
       console.log(err);

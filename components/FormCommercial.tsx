@@ -29,6 +29,7 @@ const FormCommercial = ({building_type, product_line}) => {
     nbOfElevator, 
     product_line]);
 
+    
   return (
     <>
       <h4> Commercial </h4>

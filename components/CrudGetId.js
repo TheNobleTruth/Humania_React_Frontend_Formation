@@ -12,6 +12,7 @@ import { deepOrange, deepPurple } from "@mui/material/colors";
 
 const CrudGetId = () => {
 
+  let showOrNot = 2
   const basicUrl = "http://localhost:8080/api/quote/";
   const [url, setUrl] = useState("");
   const [id, setId] = useState(0);
@@ -22,13 +23,26 @@ const CrudGetId = () => {
       const res = await fetch(url);
       const data = await res.json();
       console.log(data);
+      // const httpStatus = res.status
+      // noData(httpStatus)
       setQuote(data);
     } catch (err) {}
   };
+  
+  // const noData = (httpStatus) => {
+  //   console.log("get into function noData with value of : " + httpStatus)
+  //   if (httpStatus != 200) {
+  //     showOrNot = 2
+  //     console.log("get into function noData with value of : " + httpStatus + " In the if statement")
+  //   } else {
+  //     showOrNot = 1
+  //   }
+  // }
 
   useEffect(() => {
     setUrl(basicUrl + id);
     fetchData();
+    showOrNot = 1
   }, [id]);
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -45,9 +59,13 @@ const CrudGetId = () => {
   };
 
   return (
+    
+    
     <div>
+      {/* {showOrNot == 1 && <div>other thant 200</div>}
+      {showOrNot == 2 && <div> */}
       <br></br>
-
+      {quote.product_line}
       <Box
         sx={{
           width: 500,
@@ -65,6 +83,7 @@ const CrudGetId = () => {
           value={id}
           onChange={(e) => setId(parseInt(e.target.value))}
         />
+        {quote.building_type}
       </Box>
       <Stack
         direction="row"
@@ -82,14 +101,12 @@ const CrudGetId = () => {
               {/* // Elevator */}
               <Grid item xs={6}>
                 <Item>
-                  <div style={{ color: "red", fontSize: "30px" }}>
-                    Elevators
-                    <Avatar
-                      sx={{ bgcolor: deepPurple[500], width: 56, height: 56 }}
-                    >
-                      {quote.num_elev}
-                    </Avatar>
-                  </div>
+                  Elevators
+                  <Avatar
+                    sx={{ bgcolor: deepPurple[500], width: 56, height: 56 }}
+                  >
+                    {quote.num_elev}
+                  </Avatar>
                 </Item>
               </Grid>
 
@@ -156,6 +173,7 @@ const CrudGetId = () => {
           </Box>
         </div>
       </Stack>
+      {/* </div>} */}
     </div>
   );
 };
